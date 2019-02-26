@@ -83,13 +83,35 @@ console.log(largeShirts);
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations into a ticketPriceTotal array and log the result
 let ticketPriceTotal = [];
+const total = runners.reduce(function(accumulator, currentValue) {
+    return accumulator + currentValue.donation;
+}, 0);
+ticketPriceTotal.push(total);
 console.log(ticketPriceTotal);
 
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
-
+// The event director needs everyones company name and the donations that they made to see who's been extra generous? Use .filter() & .map()
+const TopDonations = [];
+filter = runners.filter( currentValue => { return currentValue.donation > 200; })
+.map( currentValue => { return currentValue.donation + ' ' + currentValue.company_name; })
+TopDonations.push(filter);
+console.log(TopDonations);
 // Problem 2
-
+// The event director needs everyones name in a new array and in alphabetical order. Use .forEach()
+const orderedNames = [];
+const allNames = runners.forEach(function(currentValue) {
+    orderedNames.push(currentValue.first_name);
+});
+orderedNames.sort();
+console.log(orderedNames);
 // Problem 3
+// The event director needs to total ammount of participants in the 5k fun run. 
+const totalRunners = [];
+const total_2 = runners.map(function(currentValue) {
+    return currentValue.id;
+});
+totalRunners.push(total_2);
+console.log(totalRunners);
