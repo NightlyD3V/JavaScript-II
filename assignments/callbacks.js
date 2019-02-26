@@ -51,7 +51,11 @@ sumNums(6, 13, function(add) {
 });
 function multiplyNums(x, y, cb) {
   // multiplyNums multiplies two numbers and passes the result to the callback.
+  return cb(x * y);
 }
+multiplyNums(3, 6, function(multiply) {
+  console.log(multiply);
+}); 
 
 function contains(item, list, cb) {
   // contains checks if an item is present inside of the given array/list.
