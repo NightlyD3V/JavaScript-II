@@ -56,28 +56,62 @@ const runners = [{"id":1,"first_name":"Charmain","last_name":"Seiler","email":"c
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs.  Combine both the first and last names into a new array called fullName. 
 let fullName = [];
+runners.forEach(function(currentValue) {
+    //console.log(currentValue.first_name + ' ' + currentValue.last_name);
+    fullName.push(currentValue.first_name + ' ' + currentValue.last_name);
+});
 console.log(fullName);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runner's first names converted to uppercase because the director BECAME DRUNK WITH POWER. Convert each first name into all caps and log the result
 let allCaps = [];
+runners.map(function(currentValue) {
+    //console.log(currentValue.first_name.toUpperCase());
+    allCaps.push(currentValue.first_name.toUpperCase());
+});
 console.log(allCaps); 
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue.  Get a list of runners with large sized shirts so they can choose a different size. Return an array named largeShirts that contains information about the runners that have a shirt size of L and log the result
 let largeShirts = [];
+const result = runners.filter(function(currentValue) {
+    return currentValue.shirt_size === 'L'; 
+});
+largeShirts.push(result);
 console.log(largeShirts);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations into a ticketPriceTotal array and log the result
 let ticketPriceTotal = [];
+const total = runners.reduce(function(accumulator, currentValue) {
+    return accumulator + currentValue.donation;
+}, 0);
+ticketPriceTotal.push(total);
 console.log(ticketPriceTotal);
 
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
-
+// The event director needs everyones company name and the donations that they made to see who's been extra generous? Use .filter() & .map()
+const TopDonations = [];
+filter = runners.filter( currentValue => { return currentValue.donation > 200; })
+.map( currentValue => { return currentValue.donation + ' ' + currentValue.company_name; })
+TopDonations.push(filter);
+console.log(TopDonations);
 // Problem 2
-
+// The event director needs everyones name in a new array and in alphabetical order. Use .forEach()
+const orderedNames = [];
+const allNames = runners.forEach(function(currentValue) {
+    orderedNames.push(currentValue.first_name);
+});
+orderedNames.sort();
+console.log(orderedNames);
 // Problem 3
+// The event director needs to total ammount of participants in the 5k fun run. 
+const totalRunners = [];
+const total_2 = runners.map(function(currentValue) {
+    return currentValue.id;
+});
+totalRunners.push(total_2);
+console.log(totalRunners);
