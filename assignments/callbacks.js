@@ -60,27 +60,32 @@ multiplyNums(3, 6, function(multiply) {
 function contains(item, list, cb) {
   // contains checks if an item is present inside of the given array/list.
   // Pass true to the callback if it is, otherwise pass false.
+  let found = items.find((e) => {
+    if(item === e) {
+      return true;
+    } 
+  });
   return cb(list.includes(item));
 }
 
-contains('Gum', items, function(exists) {
-  console.log(exists);
-});
-
+contains('', items, console.log);
 /* STRETCH PROBLEM */
-const newArray = [];
+
 function removeDuplicates(array, cb) {
   // removeDuplicates removes all duplicate values from the given array.
-  return array.filter(cb);
+    const newArray = array.filter( function(item, index) {
+    if (array.indexOf(item) !== index) {
+      return false;
+    } else if (array.indexOf(item) === index) {
+      return true;
+      }
+    });
+    cb(newArray);
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
 }
-removeDuplicates(items, function(item, index) {
-  if (items.indexOf(item) !== index) {
-  newArray.pop(item);
-  } else if (items.indexOf(item) === index) {
-    newArray.push(item);
-  }
-});
-console.log(newArray);
-console.log(items);
+const cb = function(element) {
+  console.log(element);
+}
+console.log(removeDuplicates(items, cb));
+
